@@ -4,7 +4,7 @@ python main.py
 Endpoints: db, sql, graph
 
 db:
-Body: Key:file, Type: File, Value: name.db
+Body: form-data then Key:file, Type: File, Value: name.db
 
 sql:
 Body: raw and select JSON
