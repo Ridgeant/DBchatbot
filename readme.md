@@ -1,5 +1,5 @@
 command for fast api:
-python run main.py
+python main.py
 
 Endpoints:
 
