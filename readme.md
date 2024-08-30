@@ -14,6 +14,7 @@ example: {
 
 graph:
 Body: raw and select JSON and put the output of /sql into this
+
 -----------------------------------------------------------
 command for Streamlit:
 streamlit run streamlit.py 
