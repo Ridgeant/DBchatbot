@@ -13,20 +13,7 @@ example: {
 }
 
 graph:
-Body: raw and select JSON
-exmple:{
-    "data": [
-        {
-            "ProjectId": 1,
-            "VendorName": "Raju"
-        },
-        {
-            "ProjectId": 2,
-            "VendorName": "Rajesh",
-        }
-    ]
-}
-
+Body: raw and select JSON and put the output of /sql into this
 -----------------------------------------------------------
 command for Streamlit:
 streamlit run streamlit.py 
