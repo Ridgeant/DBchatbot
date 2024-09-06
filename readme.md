@@ -1,10 +1,13 @@
 command for fast api:
 python main.py
 
-Endpoints: db, sql, graph
+Endpoints: db, sql, graph, api
 
 db:
 Body: form-data then Key:file, Type: File, Value: name.db
+
+api:
+Headers: key: api-key-header, value: your_api_key
 
 sql:
 Body: raw and select JSON
