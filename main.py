@@ -9,6 +9,7 @@ from langchain.chat_models import ChatOpenAI
 from typing import List, Dict, Any
 import json
 import os
+import tempfile
 
 app = FastAPI()
 
@@ -40,15 +41,17 @@ async def set_api_key(api_key_header: str = Header(...)):
 async def upload_db(file: UploadFile = File(...)):
     global db_conn, db_uri
     
-    # Save the uploaded file
-    with open(file.filename, "wb") as buffer:
-        buffer.write(await file.read())
+    # Create a temporary directory to save the uploaded file
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".db") as temp_file:
+        file_path = temp_file.name  # Full path of the saved file
+        # Save the uploaded file to the temporary file
+        temp_file.write(await file.read())
     
-    # Connect to the database
-    db_conn = sqlite3.connect(file.filename, check_same_thread=False)
-    db_uri = f"sqlite:///{file.filename}"
+    # Connect to the SQLite database using the file path
+    db_conn = sqlite3.connect(file_path, check_same_thread=False)
+    db_uri = f"sqlite:///{file_path}"  # Use the file path for the URI
     
-    return {"message": "Database uploaded and connected successfully"}
+    return {"message": "Database uploaded and connected successfully", "file_path": file_path}
 
 @app.post("/sql")
 async def execute_sql(sql_query: SQLQuery):
